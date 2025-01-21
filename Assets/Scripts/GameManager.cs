@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +10,11 @@ public class GameManager : MonoBehaviour
     public GameObject[] cats = new GameObject[2];
 
     public GameObject replayButton;
+
+    private int _level = 0;
+    private int _score = 0;
+    public Text levelText;
+    public RectTransform levelBar;
 
     private void Awake()
     {
@@ -40,5 +47,13 @@ public class GameManager : MonoBehaviour
     {
         replayButton.SetActive(true);
         Time.timeScale = 0f;
+    }
+
+    public void AddScore()
+    {
+        _score++;
+        _level = _score / 5;
+        levelBar.localScale = new Vector3((_score - _level * 5f) / 5.0f, 1f, 1f);
+        levelText.text = _level.ToString();
     }
 }

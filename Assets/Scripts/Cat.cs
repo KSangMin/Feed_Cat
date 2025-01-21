@@ -12,6 +12,7 @@ public class Cat : MonoBehaviour
     private float _energy = 0f;
     public RectTransform foreground;
 
+    private bool _isFull = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,8 +55,13 @@ public class Cat : MonoBehaviour
                 foreground.localScale = new Vector3(_energy / _fullEnergy, 1f, 1f);
                 if(_energy >= _fullEnergy)
                 {
-                    full.SetActive(true);
-                    Destroy(gameObject, 3f);
+                    if (!_isFull)
+                    {
+                        _isFull = true;
+                        full.SetActive(true);
+                        Destroy(gameObject, 3f);
+                        GameManager.Instance.AddScore();
+                    }
                 }
             }
         }
