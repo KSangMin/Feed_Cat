@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public GameObject[] cats = new GameObject[2];
+    public GameObject[] cats;
 
     public GameObject replayButton;
 
@@ -42,29 +42,28 @@ public class GameManager : MonoBehaviour
         int p = Random.Range(0, 10);
         switch (_level)
         {
-            case 0:
-                if (p < 2)
+            case 1:
+                if (p < 3)
                 {
                     Instantiate(cats[0]);
                 }
                 break;
-            case 1:
             case 2:
-                if (p < 5)
+                if (p < 6)
                 {
-                    int j = Random.Range(0, cats.Length);
                     Instantiate(cats[0]);
                 }
                 break;
             case 3:
-            case 4:
-                Instantiate(cats[Random.Range(0, cats.Length)]);
-                break;
-            default:
                 Instantiate(cats[1]);
                 break;
+            case 4:
+                Instantiate(cats[2]);
+                break;
+            default:
+                break;
         }
-        Instantiate(cats[Random.Range(0, cats.Length)]);
+        Instantiate(cats[Random.Range(0, 2)]);
     }
 
     public void GameOver()

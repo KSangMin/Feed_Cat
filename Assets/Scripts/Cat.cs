@@ -30,6 +30,10 @@ public class Cat : MonoBehaviour
                 _speed = 5f;
                 _fullEnergy = 10f;
                 break;
+            case 2://해적 고양이
+                _speed = 15f;
+                _fullEnergy = 3f;
+                break;
         }
     }
 
