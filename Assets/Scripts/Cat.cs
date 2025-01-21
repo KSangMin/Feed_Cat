@@ -6,7 +6,7 @@ public class Cat : MonoBehaviour
 {
     public GameObject full;
 
-    public float speed = 20f;
+    public float speed = 10f;
 
     private float _fullEnergy = 5f;
     private float _energy = 0f;
@@ -25,6 +25,10 @@ public class Cat : MonoBehaviour
         if (_energy < _fullEnergy)
         {
             transform.position += Vector3.down * Time.deltaTime * speed;
+            if(transform.position.y < -16f)
+            {
+                GameManager.Instance.GameOver();
+            }
         }
         else
         {
@@ -51,6 +55,7 @@ public class Cat : MonoBehaviour
                 if(_energy >= _fullEnergy)
                 {
                     full.SetActive(true);
+                    Destroy(gameObject, 3f);
                 }
             }
         }

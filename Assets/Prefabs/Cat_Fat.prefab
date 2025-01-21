@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   full: {fileID: 5757797592565146817}
-  speed: 20
+  speed: 10
   foreground: {fileID: 7493523867107009454}
 --- !u!61 &7195289861525675498
 BoxCollider2D:
