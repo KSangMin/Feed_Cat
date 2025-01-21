@@ -39,8 +39,32 @@ public class GameManager : MonoBehaviour
 
     public void CreateCat()
     {
-        int i = Random.Range(0, cats.Length);
-        Instantiate(cats[i]);
+        int p = Random.Range(0, 10);
+        switch (_level)
+        {
+            case 0:
+                if (p < 2)
+                {
+                    Instantiate(cats[0]);
+                }
+                break;
+            case 1:
+            case 2:
+                if (p < 5)
+                {
+                    int j = Random.Range(0, cats.Length);
+                    Instantiate(cats[0]);
+                }
+                break;
+            case 3:
+            case 4:
+                Instantiate(cats[Random.Range(0, cats.Length)]);
+                break;
+            default:
+                Instantiate(cats[1]);
+                break;
+        }
+        Instantiate(cats[Random.Range(0, cats.Length)]);
     }
 
     public void GameOver()

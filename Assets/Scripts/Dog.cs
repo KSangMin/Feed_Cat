@@ -8,7 +8,7 @@ public class Dog : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("CreateFood", 0f, 0.1f);
+        InvokeRepeating("CreateFood", 0f, 0.05f);
     }
 
     // Update is called once per frame

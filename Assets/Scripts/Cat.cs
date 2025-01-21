@@ -6,10 +6,11 @@ public class Cat : MonoBehaviour
 {
     public GameObject full;
 
-    public float speed = 10f;
-
+    public int type = 0;
+    private float _speed = 10f;
     private float _fullEnergy = 5f;
     private float _energy = 0f;
+
     public RectTransform foreground;
 
     private bool _isFull = false;
@@ -18,6 +19,18 @@ public class Cat : MonoBehaviour
     {
         float x = Random.Range(-9f, 9f);
         transform.position = new Vector3(x, 31f, 0);
+
+        switch (type)
+        {
+            case 0://그냥 고양이
+                _speed = 10f;
+                _fullEnergy = 5f;
+                break;
+            case 1://뚱뚱한 고양이
+                _speed = 5f;
+                _fullEnergy = 10f;
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -25,7 +38,7 @@ public class Cat : MonoBehaviour
     {
         if (_energy < _fullEnergy)
         {
-            transform.position += Vector3.down * Time.deltaTime * speed;
+            transform.position += Vector3.down * Time.deltaTime * _speed;
             if(transform.position.y < -16f)
             {
                 GameManager.Instance.GameOver();
@@ -35,11 +48,11 @@ public class Cat : MonoBehaviour
         {
             if (transform.position.x > 1)
             {
-                transform.position += Vector3.right * Time.deltaTime * speed * 1.5f;
+                transform.position += Vector3.right * Time.deltaTime * _speed * 1.5f;
             }
             else
             {
-                transform.position += Vector3.left * Time.deltaTime * speed * 1.5f;
+                transform.position += Vector3.left * Time.deltaTime * _speed * 1.5f;
 
             }
         }
@@ -49,6 +62,7 @@ public class Cat : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Food"))
         {
+            Destroy(collision.gameObject);
             if(_energy < _fullEnergy)
             {
                 _energy += 1f;
